@@ -101,13 +101,13 @@ class Home extends BaseController
                             return redirect()->to(base_url() . '');
                         }
                         $sessionData = [
-                            'username' => $user['fld_Username'],
+                            'fld_username' => $username,
                             'otpForgot' => $otpForgot, // Store the OTP in session for verification later
                         ];
                         $session->set($sessionData);
-                        $session->setFlashdata('otp', 'OTP sent to your registered email address.');
+                        $session->setFlashdata('otp', 'OTP sent to your registered email address: ' . $username);
                         // I want to back to the login page that loginmodal is open
-                        return redirect()->to(base_url() . '');
+                        return view('index');
                     } else {
                         $session->setFlashdata('error', 'An error occurred.');
                     }
@@ -124,9 +124,10 @@ class Home extends BaseController
     {
         ini_set('display_errors', 'On');
         error_reporting(E_ALL);
-        $session = session();
-        $model = new Accountmodel();
         helper(['form']);
+        $session = session();
+        $session->set('fld_username', $session->get('fld_username')); // Ensure usernames is set in session
+
         try {
             if ($this->request->getPost()) {
                 $rules = [
@@ -139,12 +140,17 @@ class Home extends BaseController
                 } else {
                     $otp = $this->request->getVar('fld_Otp');
                     $storedOtp = $session->get('otpForgot'); // Retrieve the OTP from session
+                    $username = $session->get('fld_username'); // Retrieve the username from session
                     if (!strcmp($otp, $storedOtp) == 0) {
-                        $session->setFlashdata('error', $otp . ' is not correct. Please try again. and ' . $storedOtp . ' is stored OTP');
+                        $session->setFlashdata('error', $otp . ' is not correct. Please try again.');
                         return redirect()->to(base_url() . '');
                     }
+                    $sessionData = [
+                        'usernames' => $username,
+                    ];
+                    $session->set($sessionData);
                     $session->setFlashdata('success', 'OTP verified successfully.');
-                    return redirect()->to(base_url() . '');
+                    return redirect()->to(base_url() . 'ChangePassword');
                 }
             }
         } catch (Exception $e) {

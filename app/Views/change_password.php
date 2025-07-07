@@ -172,7 +172,7 @@
     }
     else if($session->getFlashdata('success'))
     {
-      echo '<script type="text/javascript">alert("' . $session->getFlashdata('success') . '")</script>';
+       echo '<script type="text/javascript">alert("' . $session->getFlashdata('success') . '")</script>';
     }
   ?>
 
@@ -181,52 +181,21 @@
     <div class="container">
       <div class="heading_container">
         <h2>
-          Create Account
+          Change Password
         </h2>
       </div>
       
           <div class="form_container">
-            <form action="CreateAccount" method="post">
-              <div>
-                <input type="text" id="fld_Username" name="fld_Username" class="form-control" placeholder="username@domain.com" />
-              </div>
+            <form action="ChangePassword" method="post">
               <div>
                 <input type="password" id="fld_Password" name="fld_Password" class="form-control" placeholder="Your Password" />
               </div>  
               <div>
                 <input type="password" id="fld_ConfirmPassword" name="fld_ConfirmPassword" class="form-control" placeholder="Confirm Password" />
               </div>
-              <div>
-                <input type="text" id="fld_Name" name="fld_Name" class="form-control" placeholder="Your Name" />
-              </div>
-              <div>
-                <input type="text" id="fld_Contact" name="fld_Contact" class="form-control" placeholder="Phone Number" />
-              </div>
-              <div>
-                <input type="text" id="fld_Address" name="fld_Address" class="form-control" placeholder="Your Address" />
-              </div>
-              <div>
-                <input type="email" id="fld_Email2" name="fld_Email2" class="form-control" placeholder="Your Email" />
-              </div>
-              <div>
-                <p>Sex</p>
-                <select class="form-control" id="fld_Sex" name="fld_Sex">
-                      <option value="Select" data-display="Select">
-                        Select
-                      </option>
-                      <option value="Male">Male</option>
-                      <option value="Female">Female</option>
-                    </select>   
-              </div>
-              <div>
-                <p>Birthday</p>
-                <input type="date" class="form-control" id="fld_Birthday" name="fld_Birthday">
-              </div>
               <center>
               <div class="btn_box">
-                <input type="submit" value="Create Account" id="submit" style="border-radius: 45px; background-color: #ffbe33; color: white; border: none; padding: 8px 30px; font-size: 16px; cursor: pointer; transition: all 0.3s ease;">
-                <hr>
-                <p>Already have an account? <a href="#" onclick="openModal()">Login</a></p>
+                <input type="submit" value="Change Password" id="submit" style="border-radius: 45px; background-color: #ffbe33; color: white; border: none; padding: 8px 30px; font-size: 16px; cursor: pointer; transition: all 0.3s ease;">
               </div>
               </center>
             </form>

@@ -16,3 +16,5 @@ $routes->get('/Book', 'Book::index');
 $routes->get('/About', 'About::index');
 $routes->get('/CreateAccount', 'CreateAccount::index');
 $routes->post('/CreateAccount', 'CreateAccount::index');
+$routes->get('/ChangePassword', 'ChangePassword::index');
+$routes->post('/ChangePassword', 'ChangePassword::index');
